@@ -14,11 +14,13 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserRegistrationFormComponent } from './components/user-registration-form/user-registration-form.component';
+import { UserLoginFormComponent } from './components/user-login-form/user-login-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserRegistrationFormComponent
+    UserRegistrationFormComponent,
+    UserLoginFormComponent
   ],
   imports: [
     BrowserModule,

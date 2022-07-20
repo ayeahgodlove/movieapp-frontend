@@ -3,8 +3,12 @@ import { Component, OnInit, Input } from '@angular/core';
 // MUI components
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
+//Services
 import { FetchApiDataService } from '../../services/fetch-api-data.service';
-import { emptyUser } from 'src/models/User';
+
+//models
+import { emptyUser, IUser } from '../../../models/User';
 
 // services
 
@@ -23,7 +27,10 @@ export class UserRegistrationFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  // This is the function responsible for sending the form inputs to the backend
+  /**
+   * This is the function responsible for sending the form inputs to the backend
+   * returns void
+   */
   registerUser(): void {
     this.fetchApiData.userRegistration(this.userData).subscribe(
       (result) => {

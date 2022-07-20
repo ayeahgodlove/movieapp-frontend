@@ -18,11 +18,27 @@ const apiUrl = 'http://localhost:8080/api/';
 export class FetchApiDataService {
   constructor(private http: HttpClient) {}
 
-  // Making the api call for the user registration endpoint
+  /**
+   * Making the api call for the user registration endpoint
+   */
   public userRegistration(userData: IUser): Observable<any> {
     console.log(userData);
     return this.http
       .post(apiUrl + 'users', userData)
+      .pipe(catchError(this.handleError));
+  }
+
+  /**
+   * Making the api call for the user login endpoint
+   */
+  public userLogin(userData: IUser): Observable<any> {
+    const user = {
+      username: userData.username,
+      password: userData.password,
+    };
+    console.log("user: ", user);
+    return this.http
+      .post(apiUrl + 'users/login', user)
       .pipe(catchError(this.handleError));
   }
 
