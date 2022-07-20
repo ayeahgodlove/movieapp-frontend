@@ -3,10 +3,10 @@ import { Component, OnInit, Input } from '@angular/core';
 // MUI components
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FetchApiDataService } from '../../services/fetch-api-data.service';
 import { emptyUser } from 'src/models/User';
 
 // services
-import { FetchApiDataService } from '../fetch-api-data.service';
 
 @Component({
   selector: 'app-user-registration-form',
