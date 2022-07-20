@@ -6,6 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 // Custom Components
 import { UserRegistrationFormComponent } from './components/user-registration-form/user-registration-form.component';
 import { UserLoginFormComponent } from './components/user-login-form/user-login-form.component';
+import { MovieCardComponent } from './components/movie-card/movie-card.component';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -31,10 +33,20 @@ export class AppComponent {
    * This is the function that will open the dialog when the login button is clicked
    * returns @void
    */
-   openUserLoginDialog(): void {
+  openUserLoginDialog(): void {
     this.dialog.open(UserLoginFormComponent, {
       // Assigning the dialog a width
       width: '350px',
+    });
+  }
+
+  /**
+   * This is the functino that will open the dialog to display movies
+   * returns @void
+   */
+  openMoviesDialog(): void {
+    this.dialog.open(MovieCardComponent, {
+      width: '500px',
     });
   }
 }

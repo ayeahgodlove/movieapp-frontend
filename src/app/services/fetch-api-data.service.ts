@@ -8,41 +8,70 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IUser } from 'src/models/User';
+import { IMovie } from 'src/models/Movie';
 
-//Declaring the api url that will provide data for the client app
-const apiUrl = 'http://localhost:8080/api/';
 
+const getHttpOptions = () => {
+  let token = sessionStorage.getItem('token');
+  return {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json; charset=utf-8',
+      'Authorization': `Bearer ${
+        token !== null ? token : ''
+      }`,
+      'Accept': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'mode': 'no-cors',
+    })
+  }
+};
 @Injectable({
   providedIn: 'root',
 })
 export class FetchApiDataService {
+  /**
+   * Declaring the api url that will provide data for the client app
+   * @string
+   */
+  apiUrl: string = 'http://localhost:8080/api/';
   constructor(private http: HttpClient) {}
 
   /**
    * Making the api call for the user registration endpoint
    */
-  public userRegistration(userData: IUser): Observable<any> {
+  userRegistration(userData: IUser): Observable<any> {
     console.log(userData);
     return this.http
-      .post(apiUrl + 'users', userData)
+      .post<IUser>(this.apiUrl + 'users', userData, getHttpOptions())
       .pipe(catchError(this.handleError));
   }
 
   /**
    * Making the api call for the user login endpoint
    */
-  public userLogin(userData: IUser): Observable<any> {
+  userLogin(userData: IUser): Observable<any> {
     const user = {
       username: userData.username,
       password: userData.password,
     };
-    console.log("user: ", user);
+    console.log('user: ', user);
     return this.http
-      .post(apiUrl + 'users/login', user)
+      .post<IUser>(this.apiUrl + 'users/login', user, getHttpOptions())
       .pipe(catchError(this.handleError));
   }
 
-  private handleError(error: HttpErrorResponse): any {
+  /**
+   * Fetch movies from API
+   * returns @movies of type @IMovie
+   */
+  getAllMovies(): Observable<IMovie[]> {
+    const movies = this.http
+      .get<IMovie[]>(this.apiUrl + 'movies',getHttpOptions())
+      .pipe(catchError<any, Observable<IMovie[]>>(this.handleError));
+    return movies;
+  }
+
+  handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
       console.error('Some error occurred:', error.error.message);
     } else {
