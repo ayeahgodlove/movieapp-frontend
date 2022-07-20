@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 //Services
 import { FetchApiDataService } from '../../services/fetch-api-data.service';
+import { emptyToken } from 'src/models/Token';
 
 
 @Component({
@@ -26,7 +27,11 @@ export class UserLoginFormComponent implements OnInit {
   loginUser(): void {
     this.fetchApiData.userLogin(this.userData).subscribe(
       (result) => {
-        console.log("user: ", result)
+        // Save token to token mmodel
+        emptyToken.token = result.token;
+        // Save toeken to sessionStorage
+        sessionStorage.setItem('token', result.token);
+
         // Logic for a successful user registration goes here! (To be implemented)
         this.dialogRef.close(); // This will close the modal on success!
         this.snackBar.open(result, 'OK', {
