@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 // MUI modules
 import { MatInputModule } from '@angular/material/input';
@@ -22,6 +23,7 @@ import { UserRegistrationFormComponent } from './components/user-registration-fo
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatInputModule,
     MatButtonModule,
     MatCardModule,
