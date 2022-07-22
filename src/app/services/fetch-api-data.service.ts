@@ -9,10 +9,13 @@ import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IUser } from 'src/models/User';
 import { IMovie } from 'src/models/Movie';
+import { emptyToken } from 'src/models/Token';
 
 
 const getHttpOptions = () => {
-  let token = sessionStorage.getItem('token');
+  // let token = sessionStorage.getItem('token');
+  let token =  JSON.parse(`${localStorage.getItem('token')}`);
+  console.log("Access: ", token)
   return {
     headers: new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8',
@@ -54,7 +57,6 @@ export class FetchApiDataService {
       username: userData.username,
       password: userData.password,
     };
-    console.log('user: ', user);
     return this.http
       .post<IUser>(this.apiUrl + 'users/login', user, getHttpOptions())
       .pipe(catchError(this.handleError));

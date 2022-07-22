@@ -18,6 +18,7 @@ import { Router } from '@angular/router';
 })
 export class UserLoginFormComponent implements OnInit {
   @Input() userData: IUser = emptyUser;
+
   constructor(
     private dialogRef: MatDialogRef<UserLoginFormComponent>,
     private snackBar: MatSnackBar,
@@ -33,6 +34,7 @@ export class UserLoginFormComponent implements OnInit {
       emptyToken.token = result.token;
       // Save toeken to sessionStorage
       sessionStorage.setItem('token', result.token);
+      localStorage.setItem('token', JSON.stringify(result.token));
 
       // Logic for a successful user registration goes here! (To be implemented)
       this.dialogRef.close(); // This will close the modal on success!
