@@ -1,5 +1,5 @@
 interface IDirector {
-    id: "",
+    id: number,
     name: string;
     bio: string;
     avatar: string;
@@ -9,7 +9,7 @@ interface IDirector {
   }
   
   const emptyDirector: IDirector = {
-    id: "",
+    id: 0,
     name: "",
     bio: "",
     avatar: "",

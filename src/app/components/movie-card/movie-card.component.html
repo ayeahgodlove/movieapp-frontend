@@ -5,7 +5,7 @@
     <mat-card *ngFor="let movie of movies;" style="flex: 1 1 auto;">
         <mat-card-header>
             <mat-card-title style="font-size: 18px; ">{{movie.title}}</mat-card-title>
-            <mat-card-subtitle>Directed by: {{movie.directorId}}</mat-card-subtitle>
+            <mat-card-subtitle>Directed by: {{movie.director}}</mat-card-subtitle>
         </mat-card-header>
         <img src={{movie.imgPath}} alt={{movie.title}} style="width: 280px;" />
         <mat-card-actions style="display: flex; justify-content: space-between; align-items: center; ">

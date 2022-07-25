@@ -10,23 +10,23 @@ import { map } from 'rxjs/operators';
 import { IUser } from 'src/models/User';
 import { IMovie } from 'src/models/Movie';
 import { emptyToken } from 'src/models/Token';
-
+import { IDirector } from 'src/models/Director';
+import { IActor } from 'src/models/Actor';
+import { IGenre } from 'src/models/Genre';
 
 const getHttpOptions = () => {
   // let token = sessionStorage.getItem('token');
-  let token =  JSON.parse(`${localStorage.getItem('token')}`);
-  console.log("Access: ", token)
+  let token = JSON.parse(`${localStorage.getItem('token')}`);
+  console.log('Access: ', token);
   return {
     headers: new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8',
-      'Authorization': `Bearer ${
-        token !== null ? token : ''
-      }`,
-      'Accept': 'application/json',
+      Authorization: `Bearer ${token !== null ? token : ''}`,
+      Accept: 'application/json',
       'Access-Control-Allow-Origin': '*',
-      'mode': 'no-cors',
-    })
-  }
+      mode: 'no-cors',
+    }),
+  };
 };
 @Injectable({
   providedIn: 'root',
@@ -68,10 +68,39 @@ export class FetchApiDataService {
    */
   getAllMovies(): Observable<IMovie[]> {
     const movies = this.http
-      .get<IMovie[]>(this.apiUrl + 'movies',getHttpOptions())
+      .get<IMovie[]>(this.apiUrl + 'movies', getHttpOptions())
       .pipe(catchError<any, Observable<IMovie[]>>(this.handleError));
     return movies;
   }
+
+  /**
+   * Get director information
+   * returns @directors of type @IDirector array
+   */
+  getDirectors(): Observable<IDirector[]> {
+    const directors = this.http
+      .get<IDirector[]>(this.apiUrl + 'directors', getHttpOptions())
+      .pipe(catchError<any, Observable<IDirector[]>>(this.handleError));
+    return directors;
+  }
+
+  /**
+   * Get actors
+   */
+
+   getActors(): Observable<IActor[]> {
+    const actors = this.http
+      .get<IActor[]>(this.apiUrl + 'actors', getHttpOptions())
+      .pipe(catchError<any, Observable<IActor[]>>(this.handleError));
+    return actors;
+   }
+
+   getGenres(): Observable<IGenre[]> {
+    const genres = this.http
+      .get<IActor[]>(this.apiUrl + 'genres', getHttpOptions())
+      .pipe(catchError<any, Observable<IGenre[]>>(this.handleError));
+    return genres;
+   }
 
   handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {

@@ -1,5 +1,5 @@
 interface IActor {
-    id: "",
+    id: number,
     name: string;
     bio: string;
     avatar: string;
@@ -9,7 +9,7 @@ interface IActor {
   }
   
   const emptyActor: IActor = {
-    id: "",
+    id: 0,
     name: "",
     bio: "",
     avatar: "",
