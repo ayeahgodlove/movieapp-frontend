@@ -15,8 +15,8 @@ import { IActor } from 'src/models/Actor';
 import { IGenre } from 'src/models/Genre';
 
 const getHttpOptions = () => {
-  // let token = sessionStorage.getItem('token');
-  let token = JSON.parse(`${localStorage.getItem('token')}`);
+  let token = sessionStorage.getItem('token');
+  // let token = JSON.parse(`${localStorage.getItem('token')}`);
   console.log('Access: ', token);
   return {
     headers: new HttpHeaders({

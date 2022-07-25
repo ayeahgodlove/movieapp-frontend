@@ -29,10 +29,18 @@ import { WelcomePageComponent } from './pages/welcome-page/welcome-page.componen
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import { MovieDetailComponent } from './components/movie-detail/movie-detail.component';
+import { StoreModule } from '@ngrx/store';
+import { movieReducer } from 'src/redux/movies/movie.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { environment } from '../environments/environment';
+import { MovieEffects } from 'src/redux/movies/movie.effect';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
+  { path: 'movie/:name', component: MovieDetailComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
 ];
 
@@ -46,6 +54,7 @@ const appRoutes: Routes = [
     NavbarComponent,
     FooterComponent,
     CarouselComponent,
+    MovieDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,6 +72,12 @@ const appRoutes: Routes = [
     MatIconModule,
     SlickCarouselModule,
     MatGridListModule,
+    StoreModule.forRoot({ movies: movieReducer }),
+    EffectsModule.forRoot([MovieEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

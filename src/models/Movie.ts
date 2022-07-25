@@ -1,5 +1,7 @@
+import { UpdateMode } from "./UpdateMode";
+
 interface IMovie {
-    id: string;
+    id: number;
     movieid: string;
     title: string;
     description: string;
@@ -12,10 +14,8 @@ interface IMovie {
     directorId: number;
     actorId: number;
   }
-  
-
   interface IMovieData {
-    id: string;
+    id: number;
     movieid: string;
     title: string;
     description: string;
@@ -27,10 +27,19 @@ interface IMovie {
     genre: string;
     director: string;
     actor: string;
+    slug: string;
+  }
+
+  export interface IMovieState {
+    readonly isLoading: boolean;
+    readonly movies: IMovie[];
+    readonly movie: IMovie;
+    readonly errors?: string;
+    status: 'PENDING' | 'LOADING' | "ERROR" | "SUCCESS"
   }
 
   const emptyMovieData: IMovieData = {
-    id: "",
+    id: 0,
     movieid: "",
     title: "",
     description: "",
@@ -42,11 +51,12 @@ interface IMovie {
     genre:"",
     director:"",
     actor:"",
+    slug: ""
   };
   
 
   const emptyMovie: IMovie = {
-    id: "",
+    id: 0,
     movieid: "",
     title: "",
     description: "",

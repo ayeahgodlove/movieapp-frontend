@@ -1,4 +1,4 @@
-$backgroundColor: #e9dac1;
+$backgroundColor: #fcf9f5;
 $cardColor: #fff;
 $textColor: #4c3a51;
 $boxShadowColor: #e9ecef;
@@ -34,18 +34,18 @@ $boxShadowColor: #e9ecef;
   width: 100%;
 }
 
-.movies-title {
-  display: flex;
-  max-width: 230px;
-  justify-content: center;
-  text-align: center;
-  line-height: normal;
+img {
+  width: 100% !important;
+  height: 370px;
+  object-fit: contain;
 }
 
-img {
-  width: 270px;
-  height: 350px;
-  object-fit: contain;
+a {
+  text-decoration: none !important;
+  color: $textColor;
+  &:hover {
+    color: #2b3d85;
+  }
 }
 
 .mat-icon-button {

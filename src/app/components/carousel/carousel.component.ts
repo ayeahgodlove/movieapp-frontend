@@ -18,7 +18,6 @@ export class CarouselComponent implements OnInit {
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
         this.slides = resp;
-        console.log(this.slides);
         return this.slides;
       });
     }
