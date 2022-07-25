@@ -5,6 +5,9 @@ import { HttpClientModule } from '@angular/common/http';
 // Angular Router
 import { RouterModule, Routes } from '@angular/router';
 
+// Import your library
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+
 // MUI modules
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,7 +17,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -56,7 +60,9 @@ const appRoutes: Routes = [
     MatToolbarModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
-    MatIconModule
+    MatIconModule,
+    SlickCarouselModule,
+    MatGridListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
