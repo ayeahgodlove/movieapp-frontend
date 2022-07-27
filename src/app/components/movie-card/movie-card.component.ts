@@ -9,9 +9,15 @@ import {
   createMovie,
   deleteMovie,
   fetchAllMovies,
+  setMovie,
 } from 'src/redux/movies/movie.action';
 import { selectAllMovies } from 'src/redux/movies/movie.selector';
-import { emptyMovieData, IMovie, IMovieData, IMovieState } from '../../../models/Movie';
+import {
+  emptyMovieData,
+  IMovie,
+  IMovieData,
+  IMovieState,
+} from '../../../models/Movie';
 import { FetchApiDataService } from '../../services/fetch-api-data.service';
 
 @Component({
@@ -40,7 +46,26 @@ export class MovieCardComponent implements OnInit {
     this.getActors();
     this.getGenres();
     this.store.dispatch(fetchAllMovies());
-    this.allMovies$.subscribe(movies => this.getMovies(movies.movies));
+    this.allMovies$.subscribe((movies) => this.getMovies(movies.movies));
+  }
+
+  handleOnClick(id: number): void {
+    const movie = this.movies.find((m) => m.id === id) as unknown as IMovie;
+    const obj: IMovie = {
+      id: movie.id,
+      movieid: movie.movieid,
+      title: movie.title,
+      description: movie.description,
+      videoPath: movie.videoPath,
+      imgPath: movie.imgPath,
+      banner: movie.banner,
+      published: movie.published,
+      created_at: movie.created_at,
+      genreId: movie.genreId,
+      directorId: movie.directorId,
+      actorId: movie.actorId,
+    };
+    this.store.dispatch(setMovie(obj));
   }
 
   createMovie(movie: IMovie) {
@@ -52,16 +77,16 @@ export class MovieCardComponent implements OnInit {
   }
 
   getMovies(response: IMovie[]): void {
-      const movieData: IMovieData[] = response.map((m) => {
-        return {
-          ...m,
-          director: this.getDirectorName(m.directorId),
-          genre: this.getGenreName(m.genreId),
-          actor: this.getActorName(m.actorId),
-          slug: this.slugify(m.title),
-        };
-      });
-      this.movies = movieData;
+    const movieData: IMovieData[] = response.map((m) => {
+      return {
+        ...m,
+        director: this.getDirectorName(m.directorId),
+        genre: this.getGenreName(m.genreId),
+        actor: this.getActorName(m.actorId),
+        slug: this.slugify(m.title),
+      };
+    });
+    this.movies = movieData;
   }
 
   /**

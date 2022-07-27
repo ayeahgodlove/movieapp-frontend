@@ -36,11 +36,13 @@ import { EffectsModule } from '@ngrx/effects';
 import { environment } from '../environments/environment';
 import { MovieEffects } from 'src/redux/movies/movie.effect';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { VideojsComponent } from './components/videojs/videojs.component';
+import { BypassSecurityComponent } from './components/bypass-security/bypass-security.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
-  { path: 'movie/:name', component: MovieDetailComponent },
+  { path: 'movies/:name', component: MovieDetailComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
 ];
 
@@ -55,6 +57,8 @@ const appRoutes: Routes = [
     FooterComponent,
     CarouselComponent,
     MovieDetailComponent,
+    VideojsComponent,
+    BypassSecurityComponent,
   ],
   imports: [
     BrowserModule,

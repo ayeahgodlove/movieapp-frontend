@@ -29,6 +29,7 @@
     "slick-carousel": "^1.8.1",
     "slugify": "^1.6.5",
     "tslib": "^2.3.0",
+    "video.js": "^7.20.1",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
@@ -36,6 +37,7 @@
     "@angular/cli": "~14.0.2",
     "@angular/compiler-cli": "^14.0.0",
     "@types/jasmine": "~4.0.0",
+    "@types/video.js": "^7.3.42",
     "jasmine-core": "~4.1.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",

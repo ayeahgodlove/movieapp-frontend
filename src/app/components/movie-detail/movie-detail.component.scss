@@ -1,0 +1,28 @@
+$backgroundColor: #fcf9f5;
+$cardColor: #fff;
+$textColor: #4c3a51;
+$boxShadowColor: #e9ecef;
+
+.movie-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+  background-color: $backgroundColor;
+}
+
+.card-media {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 200px !important;
+    height: 390px !important;
+  }
+}
+.movie-detail-text {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}

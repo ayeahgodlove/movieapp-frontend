@@ -1,1 +1,16 @@
-<p>movie-detail works!</p>
+<div class="movie-detail">
+    <h4>{{ movieData.title }}</h4>
+    <p class="">Directed By: {{ movieData.director }}</p>
+
+    <div class="card-media">
+        <app-bypass-security [youtubeLink]="movieData.videoPath" [title]="movieData.title"></app-bypass-security>
+    </div>
+    <br />
+    <br />
+    <div class="movie-detail-text">
+        <img src="{{ movieData.imgPath }}" alt="{{ movieData.imgPath}}">
+        <div>
+            {{ movieData.description }}
+        </div>
+    </div>
+</div>
